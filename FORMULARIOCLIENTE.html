@@ -1,0 +1,111 @@
+
+<?
+Include "../config/conexao.php";
+?>
+<form method="post" action="modulos/salvarcliente.php">
+<fieldset>
+<legend><b>Dados Pessoais</b></legend>
+<table width="500px">
+<tr> 
+<td rowspan="6"><img src="../imagens/pessoa.png"></td>
+<td></td>
+</tr>
+<tr>
+<td>Nome:</td>
+<td><input type="text" name="txtnome" size="40"></td>
+</tr>    
+<tr>
+<td>Nascimento:</td>
+<td><input type="text" name="txtnascimento" size="15"></td>
+</tr>
+<tr>
+<td>Sexo:</td>
+<td>
+<input type="radio" name="optsexo" value="M"> Masculino
+<input type="radio" name="optsexo" value="F"> Feminino
+</td>
+</tr>
+<?php
+$queryFormacao = "select * from tb_formacao order by nome";
+$resultF = mysql_query($queryFormacao) or die(mysql_error());
+
+?>
+    <option value="<? echo $row['id']; ?>"><? echo $row['nome']; ?></option>
+<? } ?>
+</select>
+</td>
+</tr>
+<tr>
+<td>CPF:</td>
+<td><input type="text" name="txtcpf" size="15"></td>
+</tr>
+</table>    
+</fieldset>
+<fieldset>
+<legend><b>Contato</b></legend>
+<table width="500px">
+<tr> 
+<td rowspan="5"><img src="../imagens/contato.png"></td>
+<td></td>
+</tr>
+<tr>
+<td>Email:</td>
+<td><input type="text" name="txtemail" size="40"></td>
+</tr>    
+<tr>
+<td>Telefone:</td>
+<td><input type="text" name="txttelefone" size="15"></td>
+</tr>
+<tr>
+<td>Celular:</td>
+<td><input type="text" name="txtcelular" size="15"></td>
+</tr>
+<tr>
+<td>Skype:</td>
+<td><input type="text" name="txtskype" size="15"></td>
+</tr>
+</table>    
+</fieldset>
+<fieldset>
+<legend><b>Endereço</b></legend>
+<table width="500px">
+<tr> 
+<td rowspan="6"><img src="../imagens/endereco.png"></td>
+<td></td>
+</tr>
+<tr>
+<td>Logradouro:</td>
+<td><input type="text" name="txtlogradouro" size="40"></td>
+</tr>    
+<tr>
+<td>Número:</td>
+<td><input type="text" name="txtnumero" size="10"></td>
+<td>Cep:</td>
+<td><input type="text" name="txtcep" size="10"></td>
+</tr>
+<tr>
+<td>Bairro:</td>
+<td><input type="text" name="txtbairro" size="20"></td>
+<td>Cidade:</td>
+<td><input type="text" name="txtcidade" size="20"></td>
+</tr>
+<tr>
+<td>Estado:</td>
+<td>
+<select name="cboestado">
+<option value="RJ">RJ</option>
+<option value="SP">SP</option>
+<option value="MG">MG</option>
+<option value="ES">ES</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>Complemento:</td>
+<td><input type="text" name="txtcomplemento" size="40"></td>
+</tr>
+</table>    
+</fieldset>
+<input type="submit" value="Salvar Cliente"/>
+<input type="reset" value="Limpar Dados"/>
+</form>

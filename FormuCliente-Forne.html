@@ -1,0 +1,229 @@
+
+  
+  
+   <head>
+   <title>Formulário Fornecedores caraio</title>
+	
+	<link rel="stylesheet" href="text/style.css" media="all" />
+   </head>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("input.CEP").mask("99999-999");
+		//$("input.Municipio").mask("99999999");
+		//$("input.Fone").mask("(99) 99999-9999");
+		//$("input.Celular").mask('(99) 99999-9999');
+		$("input.CNPJ").mask("99.999.999/9999-99");
+		$("input.CPF").mask("999.999.999-99");
+		});
+	/* Máscaras ER */
+	function mascara(o,f){
+		v_obj=o
+		v_fun=f
+		setTimeout("execmascara()",1)
+	}
+	function execmascara(){
+		v_obj.value=v_fun(v_obj.value)
+	}
+	function mtel(v){
+		v=v.replace(/\D/g,"");                  //Remove tudo o que não é dígito
+		v=v.replace(/^(\d{2})(\d)/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+		v=v.replace(/(\d)(\d{4})$/,"$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+		return v;
+	}
+	function id( el ){
+		return document.getElementById( el );
+	}
+	window.onload = function(){
+		id('Celular').onkeypress = function(){
+			mascara( this, mtel );
+		}
+		id('Fone').onkeypress = function(){
+			mascara( this, mtel );
+		}
+	}
+	</script>
+
+	<script type="text/javascript">
+			function onlyDigit(e) {
+				var unicode = e.charCode ? e.charCode : e.keyCode;
+				if (unicode != 8 && unicode != 9) {
+					if (unicode<48||unicode>57) {
+						return false
+					}
+				}
+			}
+			
+	</script>
+   <body>
+	<form id="formcad" name="formcad" method="POST" action="index.php">
+<!--      <form id="Cadastro" method="post" onsubmit="validaForm(); return false;" class="form">-->
+	   <h2 align="center" style="text-decoration: underline"> Formulário Fornecedor Caaraio</h2>
+
+       <table width="950px" celspace=0 border="0" >
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td>
+				<font color=##FF0000>*&nbsp;</font><B>TIPO DO CADASTRO:</B>&nbsp;
+				<select name="TP">
+				<option>
+				<option>Cliente
+				<option>Fornecedor
+				</select>
+				</td>
+			</tr>
+	   </table>
+		
+		<font color="#FF0000">*&nbsp;</font>Solicitante:&nbsp;<input id="Solicitante" name="Solicitante" type="text" size=47 >
+		<font color=#FF0000>*&nbsp;</font>E-mail:&nbsp;<input id="EmailSolicitante" name="EmailSolicitante" type="text" size=47>
+		Alteração:&nbsp;<input name="Alteracao" type="checkbox" value="1">Sim
+		<P>
+       <table width="950px" celspace=0 border="0" > <!--cellpadding="5" cellspacing="5">-->
+           <tr>
+               <td align="right" size=60 color=#FF6600><font color=#FF0000>*&nbsp;</font>Razão&nbsp;Social:</td>
+               <td><input id="RzSocial" name="RzSocial" type="text" size=100></td>
+           </tr>
+		   <tr>
+				<td align="right"><font color=#FF0000>*&nbsp;</font>Nome&nbsp;Fantasia:</td>				
+				<td><input id="NomeFantasia" name="NomeFantasia" type="text" size=100></td>
+		   </tr>
+		   <tr>
+				<td align="right"><font color=#FF0000></font>Tipo Empresa:&nbsp;</td>
+				<td>
+				<select name="TipoEmpresa">
+				<option>
+				<option>Indefinido
+				<option>Consumidor Final
+				<option>Empresa Normal
+				<option>EPP - Pequeno Porte
+				<option>EPP - Simples
+				<option>ME - Micro Empresa
+				<option>CO - Estatal / Grande Contribuinte
+				<option>CO - Regime Comum
+				<option>CO - Regime Simplificado
+				<option>CO - Não Responsáveis
+				<option>CO - Estatal / Grande Contribuinte não responsável de IVA
+				<option>CO - Empresas de Cartão de Crédito
+				<option>ME - Simples nacional 
+				<option>SUFRAMA
+				<option>Simples Nacional
+				<option>Empresário Individual
+				</select> 
+				</td>
+           </tr>
+
+			<tr>
+               <td align="right"><font color=#FF0000>*&nbsp;</font>Endereço:</td>
+               <td><input id="Endereco" name="Endereco" type="text" size=40>&nbsp;<font color=#FF0000>*&nbsp;</font>Nº:&nbsp;<input id="Numero" name="Numero" type="text" size=1>&nbsp;<font color=#FF0000>*&nbsp;</font>CEP:&nbsp;<input type="text" class="CEP" id="CEP" name="CEP" size=6>&nbsp;</font>Cod. Município:&nbsp;<input type="text" class="Municipio" id="Municipio" name="Municipio"size=5></td>
+
+<!--		   <td align="right"><font color=#FF0000>*&nbsp;</font>Endereço:</td>
+               <td><input id="Endereco" name="Endereco" type="text" size=40/></td>
+			   <td celspace=0 align="right"><font color=#FF0000>*&nbsp;</font>Nº:</td>
+			   <td celspace=0><input id="Numero" name="Numero" type="text" size=1/></td>
+			   <td align="right"><font color=#FF0000>*&nbsp;</font>CEP:</td>
+			   <td><input type="text" class="CEP" id="CEP" name="CEP" size=5></td>
+			   <td align="right"><font color=#FF0000>&nbsp;</font>Cod. Município:</td>
+			   <td><input type="text" class="Municipio" id="Municipio" name="Municipio"size=4></td>	   
+			   -->
+		   </tr>
+<!-- size=8 maxlength=8 onkeypress="return onlyDigit(event)" onfocus="if(this.value == 'Digite') {this.value = '';}" -->
+           </tr>
+               <td align="right"><font color=#FF0000>*&nbsp;</font>Bairro:</td>
+               <td><input id="Bairro" name="Bairro" type="text" size=20>&nbsp;<font color=#FF0000>*&nbsp;</font>Cidade:&nbsp;<input id="Cidade" name="Cidade" type="text" size=20>&nbsp;<font color=#FF0000>*&nbsp;</font>UF:&nbsp;
+				<select name="UF">
+				<option>
+				<option>AC Acre
+				<option>AL Alagoas
+				<option>AP Amapá
+				<option>AM Amazonas
+				<option>BA Bahia
+				<option>CE Ceara
+				<option>DF Distrito Federal
+				<option>ES Espírito Santo
+				<option>GO Goiás
+				<option>MA Maranhão
+				<option>MT Mato Grosso
+				<option>MS Mato Grosso do Sul
+				<option>MG Minas Gerais 
+				<option>PA Pará
+				<option>PB Paraíba
+				<option>PR Paraná
+				<option>PE Pernambuco
+				<option>PI Piauí
+				<option>RJ Rio de Janeiro
+				<option>RN Rio Grande do Norte
+				<option>RS Rio Grande do Sul
+				<option>RO Rondônia
+				<option>RR Roraima
+				<option>SC Santa Catarina
+				<option>SP São Paulo
+				<option>SE Sergipe
+				<option>TO Tocantins
+				<option>EX Exterior
+				</select> 
+			   <!--<input id="UF" name="UF" type="text" size=2></td>
+			    <option selected>Plan 1 -->
+           </tr> 
+           <tr>   
+               <td align="right">Fone:</td>
+               <td><input type="text" class='Fone' id="Fone" name="Fone" maxlength="15">&nbsp;Celular:&nbsp;<input type="text" class='Celular' id="Celular" name="Celular" maxlength="15"></td>
+			</tr>
+			<tr>
+			   <td align="right">Contato:</td>
+			   <td><input id="Contato" name="Contato" type="text" size=25>&nbsp;<font color=#FF0000>*&nbsp;</font>E-mail:&nbsp;<input id="Email" name="Email" type="text" size=30></td>
+           </tr>
+            <tr>
+               <td align="right">CNPJ:</td>
+               <td><input type="text" class='CNPJ' id="CNPJ" name="CNPJ">&nbsp;CPF:&nbsp;<input type="text" class='CPF' id="CPF" name="CPF"></td>
+           </tr>
+           </tr>
+               <td align="right"><font color=#FF0000>*&nbsp;</font>Inscrição&nbsp;Estadual:</td>
+               <td><input id="InscricaoEstadual" name="InscricaoEstadual" type="text" size=20 onkeypress="return onlyDigit(event)" onfocus="if(this.value == 'Digite') {this.value = '';}">&nbsp;Inscrição&nbsp;Municipal:&nbsp;<input id="InscricaoMunicipal" name="InscricaoMunicipal" type="text" size=20  onkeypress="return onlyDigit(event)" onfocus="if(this.value == 'Digite') {this.value = '';}"></td>
+           </tr>
+               <td align="right">Observação:</td>
+               <td><textarea id="Observacao" name="Observacao" rows="1" size=5></textarea></td>
+           </tr>         
+           <tr >
+				<td> &nbsp; </td>
+				<td>
+					<table> <!--style="width:100%;" cellspacing="10"-->
+					<tr align="center">
+						<td align="right">  <input id="btEnviar" type="submit" value="Enviar" ></td>
+						<td align="center"> <input id="btFechar" type="button" value="Fechar" onClick="window.close();"></td>
+						<td align="left">   <input id="btLimpar" type="reset"  value="Limpar" ></td>
+						<td align="left"><font color=#FF0000>*&nbsp;</font>Campos&nbsp;obrigatórios</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+	   </table>
+	</form>
+	</body>
+ 
+</html>
+
+<!---->
+<SCRIPT LANGUAGE="JavaScript">
+
+ function validaForm()
+ {
+    erro = false;
+    if($('#Solicitante').val() == '')
+    {
+        alert('Você precisa preencher o campo Nome');erro = true;
+    }
+    if($('#EmailSolicitante').val() == '' && !erro)
+    {
+        alert('Você precisa preencher o campo E-mail');erro = true;
+    }
+    if($('#RzSocial').val() == '' && !erro)
+    {
+        alert('Você precisa preencher o campo Razão Social');erro = true;
+    }
+
+    //se nao tiver erros
+    if(!erro)
+    {
+        $('#Cadastro').submit();
+    }
+ }
+</script>
